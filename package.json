@@ -24,8 +24,8 @@
   "author": "walid msallem",
   "license": "ISC",
   "bugs": {
-    "url": ""
+    "url": "git+https://github.com/WalidMsallem/netflix-movie-app.git"
   },
-  "homepage": "",
-  "description": ""
+  "homepage": "git+https://github.com/WalidMsallem/netflix-movie-app.git/issues",
+  "description": "git+https://github.com/WalidMsallem/netflix-movie-app.git#readme"
 }

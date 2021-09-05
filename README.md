@@ -2,13 +2,13 @@
 
 1.  Make sure that you have Node.js v8.15.1 and npm v5 or above installed.
  
-2.  Clone this repo using `git clone `
+2.  Clone this repo using `git clone git@github.com:WalidMsallem/netflix-movie-app.git`
 
 ````
-$  --
+$  git clone git@github.com:WalidMsallem/netflix-movie-app.git
 ````
 
-3.  Move to the appropriate directory: `cd  --`.
+3.  Move to the appropriate directory: `cd  netflix-movie-app`.
 
 4. Install frontend dependencies and run the project.
 ````

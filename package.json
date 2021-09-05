@@ -1,0 +1,31 @@
+{
+  "devDependencies": {},
+  "name": "react-dash",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "concurrently": "^6.2.0",
+    "frontend-test-backend": "file:mock-backend",
+    "nodemon": "^2.0.9"
+  },
+  "scripts": {
+    "install-client": "npm install --prefix client",
+    "install-backend": "npm install  --prefix mock-backend",
+    "install-root-project": "npm install -D",
+    "setup": " npm install --prefix client & npm install  --prefix mock-backend & npm install ",
+    "server": "nodemon mock-backend",
+    "client": "npm start --prefix client",
+    "project": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "walid msallem",
+  "license": "ISC",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "description": ""
+}

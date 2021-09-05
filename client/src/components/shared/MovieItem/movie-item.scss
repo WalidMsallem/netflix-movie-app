@@ -1,0 +1,29 @@
+.movie-item {
+	width: 220px;
+	border-radius: 5px;
+	background-color: white;
+	color: black;
+	padding: 10px 12px;
+	margin: 0 8px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 140px;
+    cursor: pointer;
+    img {
+            width: unset !important ;
+        vertical-align: unset;
+        border: unset;    
+    }
+	.start {
+        width: 21px !important ;
+	}
+	.name {
+		margin-bottom: 8px;
+	}
+	.description {
+		color: gray;
+		font-size: 12px;
+		margin-bottom: 2px;
+	}
+}

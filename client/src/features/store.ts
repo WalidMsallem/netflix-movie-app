@@ -4,7 +4,6 @@ import { createInjectorsEnhancer } from 'redux-injectors'
 import { routerMiddleware } from 'connected-react-router'
 
 import history from '../utils/history'
-
 import reduxMiddlewares from '../utils/reduxMiddlewares'
 
 import createReducer from './reducers/rootReducer'

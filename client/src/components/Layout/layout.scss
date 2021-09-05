@@ -1,48 +1,47 @@
 .main-layout {
-  background-color: #141414;
-color: white;
-    &__content{
-      min-height: 95vh;
-    }
-    header {
-      padding: 20px 30px;
-      display: flex;
-      justify-content: space-between;
-    
-      .logo {
-        width: 150px;
-        margin-right: 30px;
+	background-color: #141414;
+	color: white;
+	&__content {
+		min-height: 95vh;
+	}
+	header {
+		padding: 20px 30px;
+		display: flex;
+		justify-content: space-between;
 
-      }
-      nav {
-        .nav-item  {
-          color: white;
-          text-decoration: none;
-          font-size: 17px;
-          margin: 0 5px;
-        }
-      }
-      .content{
-      display: flex;
-      justify-content: space-between;
-      .category {
-        color: white;
-        text-decoration: none;
-        font-size: 14px;
-        margin: 0 8px;
-      }
-        .setting{
-  
-        }
-      }
-   .notification-icon,.search-icon {
-    width: 21px;
-    margin: 0 8px;
-   }
-   .avatar{
-    margin: 0 8px;
-   }
-    }
+		.logo {
+			width: 150px;
+			margin-right: 30px;
+			cursor: pointer;
+		}
+		nav {
+			.nav-item {
+				color: white;
+				text-decoration: none;
+				font-size: 17px;
+				margin: 0 5px;
+				cursor: pointer;
+			}
+		}
+		.content {
+			display: flex;
+			justify-content: space-between;
+			.category {
+				color: white;
+				text-decoration: none;
+				font-size: 14px;
+				margin: 0 8px;
+			}
+			.setting {
+			}
+		}
+		.notification-icon,
+		.search-icon {
+			width: 21px;
+			margin: 0 8px;
+		}
+		.avatar {
+			margin: 0 8px;
+		}
+	}
 }
-
- 

@@ -1,28 +1,28 @@
-// import { pushNotification } from './asideMessage'
+import { pushNotification } from './asideMessage'
 import {
-  // NOTIFICATION_TYPES,
+  NOTIFICATION_TYPES,
   FAILURE,
   // GET,
 } from './constants'
-const isFailure = (action: any) => {
+const isFailure = (action) => {
   return action.type.slice(-FAILURE.length) === FAILURE
 }
 // const isGet = (e) => e.config.method === GET
 
-export const errorsExtraction = (errors: any) => {
-  // const arrayErrors = errors.map((e) => ({
-  //   message: e.message,
-  //   path: e.path[0],
-  // }))
+export const errorsExtraction = (errors) => {
+  const arrayErrors = errors.map((e) => ({
+    message: e.message,
+    path: e.path[0],
+  }))
   const obj = {}
 
-  // arrayErrors.forEach((element: { path: string | number }) => {
-  //   obj[element.path] = element
-  // })
+  arrayErrors.forEach((element) => {
+    obj[element.path] = element
+  })
   return obj
 }
 
-const error400And424Handling = (store: object, next: any, action: any) => {
+const error400And424Handling = (store, next, action) => {
   if (action.e && isFailure(action)) {
     if (action.e.response.status === 400) {
       const objectErrors = errorsExtraction(
@@ -37,7 +37,7 @@ const error400And424Handling = (store: object, next: any, action: any) => {
   next(action)
 }
 
-const error401Or403Handling = (store: object, next: any, action: any) => {
+const error401Or403Handling = (store, next, action) => {
   if (action.e && isFailure(action)) {
     if (
       (action.e.response &&
@@ -45,11 +45,16 @@ const error401Or403Handling = (store: object, next: any, action: any) => {
         action.e.response.status === 403) ||
       action.e.response.status === 401
     ) {
+      // if (isGet(action.e)) {
+      //   // redirection
+      //   next(action)
+      // } else {
+
       if (action.e.response.data.error.errorKey === 'client.body.auth') {
-        // pushNotification(
-        //   NOTIFICATION_TYPES.error,
-        //   'PLEASE COPY A NEW TOKEN ON => src/config/token',
-        // )
+        pushNotification(
+          NOTIFICATION_TYPES.error,
+          'PLEASE COPY A NEW TOKEN ON => src/config/token',
+        )
       }
       const arrayErrors = [action.e.response.data.error.errorKey]
       next({ ...action, arrayErrors })
@@ -61,7 +66,7 @@ const error401Or403Handling = (store: object, next: any, action: any) => {
   next(action)
 }
 
-const errorsHandling = (store: object, next: any, action: any) => {
+const errorsHandling = (store) => (next) => (action) => {
   if (action.e && action.e.response && isFailure(action)) {
     // eslint-disable-next-line default-case
     switch (action.e.response.status) {
@@ -73,7 +78,6 @@ const errorsHandling = (store: object, next: any, action: any) => {
       case 401:
         error401Or403Handling(store, next, action)
         break
-
       case 500:
         error400And424Handling(store, next, action)
         break
@@ -84,5 +88,4 @@ const errorsHandling = (store: object, next: any, action: any) => {
 }
 
 // export default [errorsHandling, clearErrors]
-const middlewares = [errorsHandling]
-export default middlewares
+export default [errorsHandling]

@@ -5,18 +5,19 @@ import ActionTypes from '../constants/movies.constants'
 import { MoviestState, MoviesActions } from '../types/movies.types'
 import produce from 'immer'
 
+const initialData = {
+  categories: {
+    totalItems: null,
+    currentPage: 1,
+    pageSize: 3,
+    totalPages: null,
+    results: [],
+  },
+  currentMovie: {},
+}
 // The initial state of the reducer
 export const initialState: MoviestState = {
-  data: {
-    categories: {
-      totalItems: null,
-      currentPage: 1,
-      pageSize: 3,
-      totalPages: null,
-      results: [],
-    },
-    currentMovie: {},
-  },
+  data: initialData,
   local: {
     loading: {
       gettingCategories: false,
@@ -39,6 +40,9 @@ const moviesReducer = (
 ): MoviestState =>
   produce(state, (draft) => {
     switch (action.type) {
+      case '@@router/LOCATION_CHANGE':
+        draft.data = initialData
+        break
       case ActionTypes.GET_CATEGORIES.request:
         draft.local.loading.gettingCategories = true
         draft.local.errors.gettingCategories = ''

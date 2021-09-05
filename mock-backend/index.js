@@ -118,18 +118,18 @@ app.get('/load-movies-by-category/:categoryKey', (request, response)=> {
 
 app.get('/movie/:categoryKey/:movieId', (request, response)=> {
   const  {categoryKey,movieId } = request.params
-  if (!movieId && Number(movieId))   response.status('400').send({message: 'please check the movieId'})
-  if (!categoryKey)   response.status('400').send({message: 'please check the categoryKey'})
+  if (!movieId && Number(movieId)) return  response.status('400').send({message: 'please check the movieId'})
+  if (!categoryKey)  return response.status('400').send({message: 'please check the categoryKey'})
   
   const category = structuredData[categoryKey]
   if (category) {
   const movie=   category.movies.find(element=> element.id === Number (movieId) )
     if (movie) {
-      response.send(movie)
+     return response.send(movie)
     }
     response.status('400').send({message: 'cannot find movie, please check the movieId'})
   }else {
-    response.status('400').send({message: 'cannot find category, please check the categoryKey'})
+    return response.status('400').send({message: 'cannot find category, please check the categoryKey'})
   }
 })
 // Start listen to requests

@@ -11,7 +11,7 @@ import { selectCategories } from '../../features/selectors/movies.selectors'
 import { useDispatch, useSelector } from 'react-redux'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { Spin } from 'antd'
-
+import isEmpty from 'lodash'
 const CategoriesList = (): JSX.Element => {
   const dispatch = useDispatch()
 
@@ -40,7 +40,7 @@ const CategoriesList = (): JSX.Element => {
         next={() => fetchMoreData()}
         hasMore={categories.currentPage < categories.totalPages}
         loader={
-          <div className="loader">
+          <div className="loader" key="laoder">
             Loading...
             <span>
               <Spin />
@@ -48,9 +48,11 @@ const CategoriesList = (): JSX.Element => {
           </div>
         }
         endMessage={
-          <p style={{ textAlign: 'center' }}>
-            <b>Yay! You have seen it all</b>
-          </p>
+          !isEmpty(categories.results) && (
+            <p style={{ textAlign: 'center' }}>
+              <b>Yay! You have seen it all</b>
+            </p>
+          )
         }
       >
         {categories.results.map((element: {} | any) => (
